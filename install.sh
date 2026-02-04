@@ -8,6 +8,6 @@ sudo apt install mosquitto-clients jq -y
 chmod +x main.sh
 
 # schedule the crontab 
-CRON_LINE="* * * * * ~/pi-monitoring/main.sh"
+CRON_LINE=$(cat cron)
 (crontab -l 2>/dev/null | grep -F "$CRON_LINE") >/dev/null 2>&1 || \
 (crontab -l 2>/dev/null; echo "$CRON_LINE") | crontab -
