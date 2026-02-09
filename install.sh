@@ -46,7 +46,7 @@ echo "✅ Setting execute permissions for camera monitor..."
 chmod +x camera_monitor.sh
 
 echo "📅 Installing camera monitor cron job..."
-CAMERA_CRON="* * * * * $(pwd)/camera_monitor.sh >> /var/log/pi-monitoring.log 2>&1"
+CAMERA_CRON="* * * * * $(pwd)/camera_monitor.sh"
 (crontab -l 2>/dev/null; echo "$CAMERA_CRON") | crontab -
 
 echo "✅ Camera monitor installed successfully!"
@@ -61,7 +61,7 @@ if [[ "$INSTALL_CAISSE" == "true" ]]; then
     chmod +x caisse_monitor.sh
     
     echo "📅 Installing caisse monitor cron job..."
-    CAISSE_CRON="* * * * * $(pwd)/caisse_monitor.sh >> /var/log/pi-monitoring.log 2>&1"
+    CAISSE_CRON="* * * * * $(pwd)/caisse_monitor.sh"
     (crontab -l 2>/dev/null; echo "$CAISSE_CRON") | crontab -
     
     echo "✅ Caisse monitor installed successfully!"
@@ -77,7 +77,7 @@ if [[ "$INSTALL_ALERT" == "true" ]]; then
     chmod +x alert_processor_monitor.sh
     
     echo "📅 Installing alert processor monitor cron job..."
-    ALERT_CRON="* * * * * $(pwd)/alert_processor_monitor.sh >> /var/log/pi-monitoring.log 2>&1"
+    ALERT_CRON="* * * * * $(pwd)/alert_processor_monitor.sh"
     (crontab -l 2>/dev/null; echo "$ALERT_CRON") | crontab -
     
     echo "✅ Alert processor monitor installed successfully!"
@@ -112,5 +112,4 @@ fi
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 echo "💡 View current cron jobs: crontab -l"
-echo "💡 View logs: tail -f /var/log/pi-monitoring.log"
 echo ""
