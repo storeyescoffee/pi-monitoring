@@ -64,9 +64,11 @@ RAW_PAYLOAD=$(cat <<EOF
   "timestamp": "$TIMESTAMP",
   "camera": "$CAMERA_STATUS",
   "caisse-status": "$CAISSE_STATUS",
-  "alert-processor-status": "$ALERT_STATUS",
-  "total-alerts": "$TOTAL_ALERTS",
-  "processed-alerts": "$PROCESSED_ALERTS"
+  "alert-processor": {
+    "status": "$ALERT_STATUS",
+    "total": "$TOTAL_ALERTS",
+    "processed": "$PROCESSED_ALERTS"
+  }
 }
 EOF
 )

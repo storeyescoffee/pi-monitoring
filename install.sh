@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install mosquitto-clients jq -y
 
 # grant execution permission on main.sh
-chmod +x main.sh
+# chmod +x main.sh
 
 # schedule the crontab 
 CRON_LINE=$(cat cron)
