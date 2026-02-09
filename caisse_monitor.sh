@@ -22,11 +22,13 @@ RETRIES="${RETRIES:-3}"
 #############################################
 
 CAISSE_STATUS_FILE="$HOME/caisse_status.txt"
-if [[ -f "$CAISSE_STATUS_FILE" ]]; then
-    CAISSE_STATUS=$(cat "$CAISSE_STATUS_FILE")
-else
-    CAISSE_STATUS="-1"
+
+if [[ ! -f "$CAISSE_STATUS_FILE" ]]; then
+    echo "ℹ️ Caisse status file not found. Skipping..."
+    exit 0
 fi
+
+CAISSE_STATUS=$(cat "$CAISSE_STATUS_FILE")
 
 #############################################
 # BUILD JSON PAYLOAD
