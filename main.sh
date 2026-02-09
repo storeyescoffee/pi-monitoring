@@ -37,11 +37,20 @@ fi
 
 TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
+# Check for caisse_status.txt
+CAISSE_STATUS_FILE="$HOME/caisse_status.txt"
+if [[ -f "$CAISSE_STATUS_FILE" ]]; then
+    CAISSE_STATUS=$(cat "$CAISSE_STATUS_FILE")
+else
+    CAISSE_STATUS="-1"
+fi
+
 RAW_PAYLOAD=$(cat <<EOF
 {
   "board_id": "$BOARD_ID",
   "timestamp": "$TIMESTAMP",
-  "camera": "$CAMERA_STATUS"
+  "camera": "$CAMERA_STATUS",
+  "caisse-status": "$CAISSE_STATUS"
 }
 EOF
 )
