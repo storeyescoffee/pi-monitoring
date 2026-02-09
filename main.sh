@@ -45,12 +45,28 @@ else
     CAISSE_STATUS="-1"
 fi
 
+# Check for alert-processor-status.txt
+ALERT_STATUS_FILE="$HOME/alert-processor-status.txt"
+if [[ -f "$ALERT_STATUS_FILE" ]]; then
+    ALERT_LINES=($(cat "$ALERT_STATUS_FILE"))
+    ALERT_STATUS="${ALERT_LINES[0]:--1}"
+    TOTAL_ALERTS="${ALERT_LINES[1]:--1}"
+    PROCESSED_ALERTS="${ALERT_LINES[2]:--1}"
+else
+    ALERT_STATUS="-1"
+    TOTAL_ALERTS="-1"
+    PROCESSED_ALERTS="-1"
+fi
+
 RAW_PAYLOAD=$(cat <<EOF
 {
   "board_id": "$BOARD_ID",
   "timestamp": "$TIMESTAMP",
   "camera": "$CAMERA_STATUS",
-  "caisse-status": "$CAISSE_STATUS"
+  "caisse-status": "$CAISSE_STATUS",
+  "alert-processor-status": "$ALERT_STATUS",
+  "total-alerts": "$TOTAL_ALERTS",
+  "processed-alerts": "$PROCESSED_ALERTS"
 }
 EOF
 )
